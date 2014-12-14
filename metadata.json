@@ -1,0 +1,40 @@
+{
+  "author": "Mike Lanhgorst",
+  "dependencies": [
+  	    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 2.4.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 1.0.0"
+    }
+  ],
+  "license": "Private",
+  "name": "mikelanghorst-apache_testing",
+  "operatingsystem_support": [
+  	    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "project_page": "",
+  "requirements": [
+  	    {
+      "name": "pe",
+      "version_requirement": ">= 3.2.0 < 3.4.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": "3.x"
+    }
+  ],
+  "source": "",
+  "summary": "",
+  "tags": [],
+  "version": "0.1.0"
+}
