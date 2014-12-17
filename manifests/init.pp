@@ -1,4 +1,4 @@
-# Class: apache_testing
+# Class: apache_test
 #
 # This module manages apache_testing
 #
