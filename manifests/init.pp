@@ -11,7 +11,6 @@
 # Sample Usage:
 #
 class apache_test (
-  $base_dir = undef,
   $vhost_dir = "${base_dir}/conf/vhost.d",
   $proxy_dir = "${base_dir}/conf/proxy.d",
   $ssl_dir   = "${base_dir}/ssl",
