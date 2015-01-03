@@ -1,0 +1,89 @@
+# Managed by Puppet - Do Not Modyf
+ServerRoot "<%= base_dir %>"
+
+<IfModule !mpm_netware_module>
+<IfModule !mpm_winnt_module>
+
+User <%= user %>
+Group <%= group %>
+
+</IfModule>
+</IfModule>
+
+ServerAdmin <%= serveradmin %>
+
+DocumentRoot "<%= base_dir %>/htdocs"
+
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+    Order deny,allow
+    Deny from all
+</Directory>
+
+<Directory "<%= base_dir %>/htdocs">
+    Options -FollowSymLinks -IncludesNOEXEC -Multiviews
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
+
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+
+<FilesMatch "^\.ht">
+    Order allow,deny
+    Deny from all
+    Satisfy all
+</FilesMatch>
+
+ErrorLog "logs/error_log"
+LogLevel <%= log_level %>
+
+<IfModule log_config_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    <IfModule logio_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}\" %I %O" combinedio
+    </IfModule>
+</IfModule>
+
+DefaultType text/plain
+
+<IfModule mime_module>
+    TypesConfig conf/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+</IfModule>
+
+<IfModule ssl_module>
+    SSLRandomSeed startup builtin
+    SSLRandomSeed connect builtin
+</IfModule>
+
+### CAISO customizations - ClearTrust protected
+#
+Include conf/caiso-ssl.conf
+# RSA Access Manager 4.9 for Apache configuration file location
+Include "/app/ct/rsa-axm/agent-49SP3-apache/webservers/<%= instance_name %>/conf/ct-httpd.conf"
+Include conf/caiso-proxy.conf
+#
+## security recommended features # Prefork settings #
+Timeout 10
+KeepAlive On
+KeepAliveTimeout 15
+MaxKeepAliveRequests 100
+StartServers 5
+MinSpareServers 5
+MaxSpareServers 10
+MaxClients 256
+ServerLimit 256
+AcceptFilter https data
+TraceEnable Off
+LimitRequestBody 6400
+LimitRequestFields 32
+LimitRequestFieldSize 8000
+LimitRequestLine 4000
+ServerTokens Prod
+ServerSignature Off
