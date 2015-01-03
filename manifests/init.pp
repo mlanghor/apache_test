@@ -23,6 +23,7 @@ define apache_test (
   $purge_ssl_dir   = true,
   $log_level       = 'warn',
   $httpd_template  = 'httpd-2.2-CT.conf.erb',
+  $server_admin    = 'ISOHelpDesk@caiso.com',
 
   ) {
 
@@ -50,7 +51,7 @@ define apache_test (
   file { "${base_dir}/conf/httpd.conf":
     ensure  => file,
     require => File["${base_dir}/conf"],
-    content => template("$httpd_template"),
+    content => template("apache_test/${httpd_template}"),
     mode    => '0640',
   }
 }
