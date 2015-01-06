@@ -24,6 +24,7 @@ define apache_test (
   $log_level       = 'warn',
   $httpd_template  = 'httpd-2.2-CT.conf.erb',
   $serveradmin    = 'ISOHelpDesk@caiso.com',
+  $instance_name   = undef,
 
   ) {
 
