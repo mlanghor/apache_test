@@ -23,7 +23,7 @@ define apache_test (
   $purge_ssl_dir   = true,
   $log_level       = 'warn',
   $httpd_template  = 'httpd-2.2-CT.conf.erb',
-  $server_admin    = 'ISOHelpDesk@caiso.com',
+  $serveradmin    = 'ISOHelpDesk@caiso.com',
 
   ) {
 
