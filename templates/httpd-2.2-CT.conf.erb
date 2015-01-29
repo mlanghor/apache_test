@@ -1,5 +1,5 @@
 # Managed by Puppet - Do Not Modyf
-ServerRoot "<%= base_dir %>"
+ServerRoot "<%= base_dir %>/<%= instance_name %>"
 
 <IfModule !mpm_netware_module>
 <IfModule !mpm_winnt_module>
@@ -12,7 +12,7 @@ Group <%= group %>
 
 ServerAdmin <%= serveradmin %>
 
-DocumentRoot "<%= base_dir %>/htdocs"
+DocumentRoot "<%= base_dir %>/<%= instance_name %>/htdocs"
 
 <Directory />
     Options FollowSymLinks
@@ -21,7 +21,7 @@ DocumentRoot "<%= base_dir %>/htdocs"
     Deny from all
 </Directory>
 
-<Directory "<%= base_dir %>/htdocs">
+<Directory "<%= base_dir %>/<%= instance_name %>/htdocs">
     Options -FollowSymLinks -IncludesNOEXEC -Multiviews
     AllowOverride None
     Order allow,deny
