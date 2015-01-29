@@ -3,6 +3,8 @@ define apache_test::ssl_vhost (
   $vhost_dir       = "${base_dir}/${instance_name}/conf/vhost.d",
   $proxy_dir       = "${base_dir}/${instance_name}/conf/proxy.d",
   $ssl_dir         = "${base_dir}/${instance_name}/ssl",
+  $ssl_crt         = undef,
+  $ssl_key         = undef,
   $vhost_ip        = undef,
   $vhost_port      = undef,
   $servername      = undef,
