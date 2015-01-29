@@ -1,5 +1,5 @@
 define apache_test::ssl_vhost (
-  $base_dir        = /app/apache,
+  $base_dir        = '/app/apache',
   $vhost_dir       = "${base_dir}/${instance_name}/conf/vhost.d",
   $proxy_dir       = "${base_dir}/${instance_name}/conf/proxy.d",
   $ssl_dir         = "${base_dir}/${instance_name}/ssl",

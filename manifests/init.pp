@@ -40,7 +40,7 @@ define apache_test (
 
   file { "${base_dir}/${instance_name}":
     ensure => directory,
-    require => $base_dir,
+    require => File[$base_dir],
   }
 
   file { "${base_dir}/${instance_name}/conf":

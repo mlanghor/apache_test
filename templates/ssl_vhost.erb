@@ -1,0 +1,33 @@
+sten <%= vhost_ip %>:<%= vhost_port %>
+<VirtualHost <%= vhost_ip %>:<%= vhost_port %>>
+DocumentRoot "<%= docroot %>"
+ServerName  <%= servername %> 
+ServerAdmin  <%= serveradmin %> 
+ErrorLog "<%= base_dir %>/<%= instance_name %>/logs/error_log"
+
+RewriteEngine on
+RewriteOptions Inherit
+
+SSLEngine on
+SSLProtocol All -SSLv2
+SSLCertificateFile "<%= base_dir %>/<%= instance_name %>/ssl/<%= ssl_crt %>"
+SSLCertificateKeyFile "<%= base_dir %>/<%= instance_name %>/ssl/<%= ssl_key %>"
+SSLCertificateChainFile "<%= base_dir %>/<%= instance_name %>/ssl/caiso_chain.pem"
+SSLCACertificateFile "<%= base_dir %>/<%= instance_name %>/ssl/caiso_chain.pem"
+SSLCARevocationFile "/app/crl/caiso_issuing_ca.crl"
+
+SSLVerifyClient require
+SSLVerifyDepth 10
+
+SSLOptions +FakeBasicAuth +ExportCertData +StrictRequire +StdEnvVars
+
+RequestHeader set UNIQUE_ID "%{SSL_SESSION_ID}s"
+
+BrowserMatch "MSIE [2-5]" \
+         nokeepalive ssl-unclean-shutdown \
+         downgrade-1.0 force-response-1.0
+
+CustomLog "<%= base_dir %>/<%= instance_name %>/logs/access_log" \
+           "%h %l \"%{SSL_CLIENT_S_DN}x\" %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" responseTime=%D uniqueId=%{SSL_SESSION_ID}x ctRemoteUser=%{ct-remote-user}i virtualHost=%v"
+
+</VirtualHost>
